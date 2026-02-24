@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Music Player Assignment",
+    "slug": "music-player-assignment",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "jsEngine": "hermes",
+    "android": {
+      "package": "com.akash.musicplayerassignment"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "local-music-player-assignment"
+      }
+    }
+  }
+}
