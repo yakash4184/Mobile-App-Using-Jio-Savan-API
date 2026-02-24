@@ -1,20 +1,26 @@
 {
   "expo": {
-    "name": "Music Player Assignment",
+    "name": "Akash Pro Music",
     "slug": "music-player-assignment",
     "version": "1.0.0",
+    "icon": "./assets/icon.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "jsEngine": "hermes",
     "android": {
-      "package": "com.akash.musicplayerassignment"
+      "package": "com.akash.musicplayerassignment",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#000000"
+      }
     },
     "plugins": [],
     "extra": {
       "eas": {
-        "projectId": "local-music-player-assignment"
+        "projectId": "8b74f266-5959-458a-afdd-adedd8b2146a"
       }
-    }
+    },
+    "owner": "yakash4184"
   }
 }

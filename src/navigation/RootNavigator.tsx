@@ -19,7 +19,7 @@ export function RootNavigator(): React.JSX.Element {
           contentStyle: { backgroundColor: "#F9FAFB" }
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Home" }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Dashboard" }} />
         <Stack.Screen
           name="Player"
           component={PlayerScreen}
