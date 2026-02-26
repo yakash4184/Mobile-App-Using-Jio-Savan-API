@@ -1,20 +1,15 @@
 import React, { useMemo, useState } from "react";
 import {
   Image,
-  LayoutChangeEvent,
   Pressable,
   StyleSheet,
   Text,
   View
 } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/types";
 import { usePlayerStore } from "../store/usePlayerStore";
 import { formatMillis } from "../utils/time";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Player">;
-
-export function PlayerScreen({ navigation }: Props): React.JSX.Element {
+export function PlayerScreen({ navigation }) {
   const queue = usePlayerStore((state) => state.queue);
   const currentIndex = usePlayerStore((state) => state.currentIndex);
   const isPlaying = usePlayerStore((state) => state.isPlaying);
@@ -41,11 +36,11 @@ export function PlayerScreen({ navigation }: Props): React.JSX.Element {
     return Math.max(0, Math.min(positionMs / durationMs, 1));
   }, [durationMs, positionMs]);
 
-  const onSeekBarLayout = (event: LayoutChangeEvent): void => {
+  const onSeekBarLayout = (event) => {
     setSeekBarWidth(Math.max(1, event.nativeEvent.layout.width));
   };
 
-  const handleSeekPress = (locationX: number): void => {
+  const handleSeekPress = (locationX) => {
     if (durationMs <= 0) {
       return;
     }

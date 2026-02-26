@@ -6,19 +6,8 @@ import {
   Text,
   View
 } from "react-native";
-import { Song } from "../types/music";
 
-interface SongListItemProps {
-  song: Song;
-  onPlay: () => void;
-  onAddToQueue: () => void;
-}
-
-export function SongListItem({
-  song,
-  onPlay,
-  onAddToQueue
-}: SongListItemProps): React.JSX.Element {
+export function SongListItem({ song, onPlay, onAddToQueue }) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>

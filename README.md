@@ -4,11 +4,11 @@ A clean and interview-friendly implementation of the music player assignment usi
 
 ## Tech Stack
 
-- Expo + React Native + TypeScript
+- Expo + React Native + JavaScript
 - React Navigation v6 (native stack)
 - Zustand for global player state
 - AsyncStorage persistence
-- `expo-av` for audio playback
+- `expo-audio` for audio playback
 
 ## Features Implemented
 
@@ -40,25 +40,22 @@ A clean and interview-friendly implementation of the music player assignment usi
 ```text
 src/
   api/
-    saavn.ts
+    saavn.js
   components/
-    MiniPlayer.tsx
-    SongListItem.tsx
+    MiniPlayer.jsx
+    SongListItem.jsx
   navigation/
-    RootNavigator.tsx
-    types.ts
+    RootNavigator.jsx
   screens/
-    HomeScreen.tsx
-    PlayerScreen.tsx
-    QueueScreen.tsx
+    HomeScreen.jsx
+    PlayerScreen.jsx
+    QueueScreen.jsx
   services/
-    audioPlayer.ts
+    audioPlayer.js
   store/
-    usePlayerStore.ts
-  types/
-    music.ts
+    usePlayerStore.js
   utils/
-    time.ts
+    time.js
 ```
 
 ## Setup

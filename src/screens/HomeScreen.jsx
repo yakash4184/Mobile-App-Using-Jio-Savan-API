@@ -8,32 +8,27 @@ import {
   TextInput,
   View
 } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { searchSongs } from "../api/saavn";
 import { SongListItem } from "../components/SongListItem";
-import { RootStackParamList } from "../navigation/types";
 import { usePlayerStore } from "../store/usePlayerStore";
-import { Song } from "../types/music";
-
-type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const PAGE_SIZE = 20;
 
-export function HomeScreen({ navigation }: Props): React.JSX.Element {
+export function HomeScreen({ navigation }) {
   const [query, setQuery] = useState("arijit");
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [songs, setSongs] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   const setQueueAndPlay = usePlayerStore((state) => state.setQueueAndPlay);
   const addToQueue = usePlayerStore((state) => state.addToQueue);
 
   const trimmedQuery = useMemo(() => query.trim(), [query]);
 
-  const fetchPage = async (targetPage: number, append: boolean): Promise<void> => {
+  const fetchPage = async (targetPage, append) => {
     if (!trimmedQuery) {
       setSongs([]);
       setHasMore(false);
@@ -84,7 +79,7 @@ export function HomeScreen({ navigation }: Props): React.JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trimmedQuery]);
 
-  const handleLoadMore = (): void => {
+  const handleLoadMore = () => {
     if (!hasMore || loading || loadingMore) {
       return;
     }
@@ -92,7 +87,7 @@ export function HomeScreen({ navigation }: Props): React.JSX.Element {
     void fetchPage(page + 1, true);
   };
 
-  const handlePlayFromSearch = (index: number): void => {
+  const handlePlayFromSearch = (index) => {
     void setQueueAndPlay(songs, index);
     navigation.navigate("Player");
   };

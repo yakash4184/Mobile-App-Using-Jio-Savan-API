@@ -8,15 +8,12 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/types";
 import { usePlayerStore } from "../store/usePlayerStore";
 import { formatMillis } from "../utils/time";
 
-export function MiniPlayer(): React.JSX.Element | null {
+export function MiniPlayer() {
   const insets = useSafeAreaInsets();
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation();
 
   const queue = usePlayerStore((state) => state.queue);
   const currentIndex = usePlayerStore((state) => state.currentIndex);
@@ -33,7 +30,7 @@ export function MiniPlayer(): React.JSX.Element | null {
   }
 
   return (
-    <View style={[styles.wrapper, { bottom: insets.bottom + 8 }]}> 
+    <View style={[styles.wrapper, { bottom: insets.bottom + 8 }]}>
       <Pressable
         style={styles.container}
         onPress={() => navigation.navigate("Player")}

@@ -1,13 +1,8 @@
-import { SearchSongsResult, Song } from "../types/music";
-
 const API_BASE_URL = "https://saavn.sumit.co";
 
-type UnknownRecord = Record<string, unknown>;
+const isRecord = (value) => typeof value === "object" && value !== null;
 
-const isRecord = (value: unknown): value is UnknownRecord =>
-  typeof value === "object" && value !== null;
-
-const parseNumber = (value: unknown, fallback = 0): number => {
+const parseNumber = (value, fallback = 0) => {
   if (typeof value === "number" && Number.isFinite(value)) {
     return value;
   }
@@ -22,7 +17,7 @@ const parseNumber = (value: unknown, fallback = 0): number => {
   return fallback;
 };
 
-const parseQualityScore = (quality: string): number => {
+const parseQualityScore = (quality) => {
   const numeric = quality.match(/\d+/g);
   if (!numeric || numeric.length === 0) {
     return 0;
@@ -31,7 +26,7 @@ const parseQualityScore = (quality: string): number => {
   return Number(numeric[numeric.length - 1]) || 0;
 };
 
-const pickHighestQualityUrl = (value: unknown): string => {
+const pickHighestQualityUrl = (value) => {
   if (!Array.isArray(value) || value.length === 0) {
     return "";
   }
@@ -59,7 +54,7 @@ const pickHighestQualityUrl = (value: unknown): string => {
   return candidates[0]?.url ?? "";
 };
 
-const normalizeSong = (rawSong: unknown): Song => {
+const normalizeSong = (rawSong) => {
   const song = isRecord(rawSong) ? rawSong : {};
   const album = isRecord(song.album) ? song.album : {};
 
@@ -91,7 +86,7 @@ const normalizeSong = (rawSong: unknown): Song => {
   };
 };
 
-async function fetchJson(path: string): Promise<unknown> {
+async function fetchJson(path) {
   const response = await fetch(`${API_BASE_URL}${path}`);
   if (!response.ok) {
     throw new Error(`API request failed with status ${response.status}`);
@@ -100,11 +95,7 @@ async function fetchJson(path: string): Promise<unknown> {
   return response.json();
 }
 
-export async function searchSongs(
-  query: string,
-  page = 1,
-  limit = 20
-): Promise<SearchSongsResult> {
+export async function searchSongs(query, page = 1, limit = 20) {
   const trimmedQuery = query.trim();
   if (!trimmedQuery) {
     return {
@@ -137,7 +128,7 @@ export async function searchSongs(
   };
 }
 
-export async function fetchSongDetails(songId: string): Promise<Partial<Song>> {
+export async function fetchSongDetails(songId) {
   const raw = await fetchJson(`/api/songs/${songId}`);
   const result = isRecord(raw) ? raw : {};
   const data = result.data;

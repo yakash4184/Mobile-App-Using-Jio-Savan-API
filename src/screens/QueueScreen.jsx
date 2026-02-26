@@ -6,14 +6,10 @@ import {
   Text,
   View
 } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/types";
 import { usePlayerStore } from "../store/usePlayerStore";
 import { formatSeconds } from "../utils/time";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Queue">;
-
-export function QueueScreen({ navigation }: Props): React.JSX.Element {
+export function QueueScreen({ navigation }) {
   const queue = usePlayerStore((state) => state.queue);
   const currentIndex = usePlayerStore((state) => state.currentIndex);
   const playIndex = usePlayerStore((state) => state.playIndex);

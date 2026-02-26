@@ -2,37 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { fetchSongDetails } from "../api/saavn";
-import { audioPlayer, PlaybackSnapshot } from "../services/audioPlayer";
-import { RepeatMode, Song } from "../types/music";
+import { audioPlayer } from "../services/audioPlayer";
 
-interface PlayerState {
-  initialized: boolean;
-  queue: Song[];
-  currentIndex: number;
-  isPlaying: boolean;
-  isBuffering: boolean;
-  positionMs: number;
-  durationMs: number;
-  repeatMode: RepeatMode;
-  isShuffle: boolean;
-  initialize: () => Promise<void>;
-  getCurrentSong: () => Song | null;
-  setQueueAndPlay: (songs: Song[], startIndex: number) => Promise<void>;
-  addToQueue: (song: Song) => void;
-  removeFromQueue: (index: number) => Promise<void>;
-  moveQueueItem: (fromIndex: number, toIndex: number) => void;
-  playIndex: (index: number) => Promise<void>;
-  togglePlayPause: () => Promise<void>;
-  seekTo: (positionMs: number) => Promise<void>;
-  playNext: () => Promise<void>;
-  playPrevious: () => Promise<void>;
-  toggleShuffle: () => void;
-  cycleRepeatMode: () => void;
-  syncPlaybackStatus: (snapshot: PlaybackSnapshot) => void;
-  handleTrackFinished: () => Promise<void>;
-}
-
-const getRandomIndex = (length: number, currentIndex: number): number => {
+const getRandomIndex = (length, currentIndex) => {
   if (length <= 1) {
     return currentIndex;
   }
@@ -44,7 +16,7 @@ const getRandomIndex = (length: number, currentIndex: number): number => {
   return nextIndex;
 };
 
-export const usePlayerStore = create<PlayerState>()(
+export const usePlayerStore = create()(
   persist(
     (set, get) => ({
       initialized: false,
@@ -282,7 +254,7 @@ export const usePlayerStore = create<PlayerState>()(
 
       cycleRepeatMode: () => {
         set((state) => {
-          const nextMode: Record<RepeatMode, RepeatMode> = {
+          const nextMode = {
             off: "all",
             all: "one",
             one: "off"

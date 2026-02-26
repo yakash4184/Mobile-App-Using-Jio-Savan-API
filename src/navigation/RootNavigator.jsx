@@ -5,11 +5,10 @@ import { MiniPlayer } from "../components/MiniPlayer";
 import { HomeScreen } from "../screens/HomeScreen";
 import { PlayerScreen } from "../screens/PlayerScreen";
 import { QueueScreen } from "../screens/QueueScreen";
-import { RootStackParamList } from "./types";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
-export function RootNavigator(): React.JSX.Element {
+export function RootNavigator() {
   return (
     <View style={styles.container}>
       <Stack.Navigator

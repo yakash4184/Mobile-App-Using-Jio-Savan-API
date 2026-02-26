@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { RootNavigator } from "./src/navigation/RootNavigator";
 import { usePlayerStore } from "./src/store/usePlayerStore";
 
-export default function App(): React.JSX.Element {
+export default function App() {
   const initialize = usePlayerStore((state) => state.initialize);
 
   useEffect(() => {
